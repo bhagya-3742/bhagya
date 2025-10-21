@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home Automation Control</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e9f0f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    /* Container for top row: Bed-1, Bed-2 and Kitchen side by side */
+    .top-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Each room box */
+    .room {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      flex: 1 1 280px;
+      min-width: 280px;
+      max-width: 350px;
+      transition: box-shadow 0.3s ease;
+    }
+    .room:hover {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      color: #34495e;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .device {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    label {
+      margin-left: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sensor-data {
+      margin-top: 15px;
+      font-style: italic;
+      color: #7f8c8d;
+      font-size: 14px;
+    }
+
+    /* Big long hall room below */
+    #hall-room {
+      max-width: 1140px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 25px 30px;
+    }
+
+    #hall-room h2 {
+      border-color: #e67e22;
+      color: #e67e22;
+    }
+
+    .device input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Home Automation Control Panel</h1>
+
+  <div class="top-row">
+    <!-- Bed-1 Room -->
+    <div class="room" id="bed1-room">
+      <h2>Bed-1 Room</h2>
+      <div class="device">
+        <input type="checkbox" id="bed1-fan" />
+        <label for="bed1-fan">Fan</label>
+      </div>
+      <div class="device">
+        <input type="checkbox" id="bed1-ac" />
+        <label for="bed1-ac">AC</label>
+      </div>
+      <div class="device">
+        <input type="checkbox" id="bed1-lamp" />
+        <label for="bed1-lamp">Lamp</label>
+      </div>
+      <div class="sensor-data" id="bed1-sensors">
+        Humidity: <span id="bed1-humidity">--</span>% | Temperature: <span id="bed1-temp">--</span>C
+      </div>
+    </div>
+
+    <!-- Bed-2 Room -->
+    <div class="room" id="bed2-room">
+      <h2>Bed-2 Room</h2>
+      <div class="device">
+        <input type="checkbox" id="bed2-fan" />
+        <label for="bed2-fan">Fan</label>
+      </div>
+      <div class="device">
+        <input type="checkbox" id="bed2-ac" />
+        <label for="bed2-ac">AC</label>
+      </div>
+      <div class="device">
+        <input type="checkbox" id="bed2-lamp" />
+        <label for="bed2-lamp">Lamp</label>
+      </div>
+      <div class="sensor-data" id="bed2-sensors">
+        Humidity: <span id="bed2-humidity">--</span>% | Temperature: <span id="bed2-temp">--</span>C
+      </div>
+    </div>
+
+    <!-- Kitchen -->
+    <div class="room" id="kitchen-room">
+      <h2>Kitchen</h2>
+      <div class="device">
+        <input type="checkbox" id="kitchen-lamp" />
+        <label for="kitchen-lamp">Lamp</label>
+      </div>
+      <div class="device">
+        <input type="checkbox" id="kitchen-smoke-sensor" />
+        <label for="kitchen-smoke-sensor">Smoke Sensor</label>
+      </div>
+      <div class="device">
+        <input type="checkbox" id="kitchen-exhaust" />
+        <label for="kitchen-exhaust">Exhaust Fan Control</label>
+      </div>
+      <div class="device">
+        <input type="checkbox" id="kitchen-fridge" />
+        <label for="kitchen-fridge">Refrigerator</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hall -->
+  <div class="room" id="hall-room">
+    <h2>Hall</h2>
+    <div class="device">
+      <input type="checkbox" id="hall-tv" />
+      <label for="hall-tv">TV</label>
+    </div>
+    <div class="device">
+      <input type="checkbox" id="hall-fan" />
+      <label for="hall-fan">Fan</label>
+    </div>
+    <div class="device">
+      <input type="checkbox" id="hall-lamp" />
+      <label for="hall-lamp">Lamp</label>
+    </div>
+    <div class="device">
+      <input type="checkbox" id="hall-fridge" />
+      <label for="hall-fridge">Refrigerator</label>
+    </div>
+  </div>
+
+  <script>
+    // Simulated sensor data update (replace this with real data logic)
+    function updateSensorData() {
+      document.getElementById('bed1-humidity').textContent = (40 + Math.random() * 20).toFixed(1);
+      document.getElementById('bed1-temp').textContent = (20 + Math.random() * 5).toFixed(1);
+
+      document.getElementById('bed2-humidity').textContent = (35 + Math.random() * 25).toFixed(1);
+      document.getElementById('bed2-temp').textContent = (19 + Math.random() * 6).toFixed(1);
+    }
+
+    setInterval(updateSensorData, 5000); // Update every 5 seconds
+    updateSensorData(); // Initial call
+  </script>
+</body>
+</html>
